@@ -28,6 +28,7 @@
 *.opensdf
 *.unsuccessfulbuild
 *.lastbuildstate
+.vs/
 ipch/
 obj/
 cmake/
