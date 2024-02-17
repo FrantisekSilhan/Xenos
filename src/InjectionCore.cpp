@@ -583,7 +583,7 @@ NTSTATUS InjectionCore::InjectSingle( InjectContext& context, blackbone::pe::PEI
             case Kernel_Thread:
             case Kernel_APC:
             case Kernel_MMap:
-                if (!NT_SUCCESS( status = InjectKernel( context, img, exportRVA ) ))
+                if (!NT_SUCCESS( status = InjectKernel( context, img, exportRVA ).status ))
                     xlog::Error( "Failed to inject image using kernel injection, status: 0x%X", status );
                 break;                
 
@@ -696,7 +696,9 @@ blackbone::call_result_t<blackbone::ModuleDataPtr> InjectionCore::InjectDefault(
 /// <param name="context">Injection context</param>
 /// <param name="img">Target image</param>
 /// <param name="initRVA">Init function RVA</param>
-NTSTATUS InjectionCore::InjectKernel(
+/// 
+
+blackbone::call_result_t<blackbone::ModuleDataPtr> InjectionCore::InjectKernel(
     InjectContext& context,
     const blackbone::pe::PEImage& img,
     uint32_t initRVA /*= 0*/

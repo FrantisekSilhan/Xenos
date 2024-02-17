@@ -61,13 +61,13 @@ void AssociateExtension()
 void LogOSInfo()
 {
     SYSTEM_INFO info = { 0 };
-    char* osArch = "x64";
+    char* osArch = (char*)"x64";
 
     auto pPeb = (blackbone::PEB_T*)NtCurrentTeb()->ProcessEnvironmentBlock;
     GetNativeSystemInfo( &info );
 
     if (info.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_INTEL)
-        osArch = "x86";
+        osArch = (char*)"x86";
 
     xlog::Normal(
         "Started on Windows %d.%d.%d.%d %s. Driver status: 0x%X",

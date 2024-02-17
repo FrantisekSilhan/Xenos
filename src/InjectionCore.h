@@ -115,11 +115,18 @@ private:
     /// <param name="img">Target image</param>
     /// <param name="initRVA">Init function RVA</param>
     /// <returns>Error code</returns>
-    NTSTATUS InjectionCore::InjectKernel(
+    /// 
+	blackbone::call_result_t<blackbone::ModuleDataPtr> InjectKernel(
+		InjectContext& context,
+		const blackbone::pe::PEImage& img,
+		uint32_t initRVA = 0
+		);
+
+    /*NTSTATUS InjectionCore::InjectKernel(
         InjectContext& context,
         const blackbone::pe::PEImage& img,
-        uint32_t initRVA /*= 0*/
-        );
+        uint32_t initRVA = 0
+        );*/
 
     /// <summary>
     /// Manually map another system driver into system space
